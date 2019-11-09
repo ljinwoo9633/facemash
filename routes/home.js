@@ -360,25 +360,24 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
         face_query = face_query.regex('name', new RegExp(req.query.search, 'i'));
     }
 
-    try{
-        let searched_users = await face_query.sort({like: 'desc'}).exec();
+    
+    let searched_users = await face_query.sort({like: 'desc'}).exec();
         
 
-        searched_users = searched_users.filter((searched_user) => {
-            return searched_user.main_image_filename_exists === true;
-        })
+    searched_users = searched_users.filter((searched_user) => {
+        return searched_user.main_image_filename_exists === true;
+    })
 
-        console.log(searched_user);
+    console.log(searched_user);
 
-        res.render('home/search', {
-            searched_users: searched_users,
-            searchOptions: req.query,
-            protocol: req.protocol,
-            url_part: req.headers.host
-        })
-    }catch{
-        res.redirect('/home/search');
-    }
+    res.render('home/search', {
+        searched_users: searched_users,
+        searchOptions: req.query,
+        protocol: req.protocol,
+        url_part: req.headers.host
+    })
+    
+    res.redirect('/home/search');
 
 })
 
