@@ -1,0 +1,29 @@
+.home-model{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.home-model__button{
+    all: unset;
+}
+
+.home-model__image{
+    height: 25rem;
+    width: 18rem;
+}
+
+.home-modal__button{
+    width: 18rem;
+}
+
+@media(max-width: 600px){
+    .home-model__image{
+        height: 15rem;
+        width: 9rem;
+    }
+    .home-modal__button{
+        width: 9rem;
+    }
+}

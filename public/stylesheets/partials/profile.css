@@ -1,0 +1,50 @@
+.profile-modal__image{
+    height: 25rem;
+    width: 18rem;
+}
+
+.profile-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-modal__delete__btn{
+    all: unset;
+    cursor: pointer;
+}
+
+.profile-modal__btn__size{
+    width: 25rem;
+}
+
+.profile-modal__description__input{
+    width: 25rem;
+}
+
+.profile-modal__history__title{
+    border-bottom: 1px solid black; 
+    width: 25rem;
+}
+
+@media(max-width: 600px){
+    .profile-modal__image{
+        height: 15rem;
+        width: 9rem;
+    }
+
+    .profile-modal__btn__size{
+        width: 22rem;
+    }
+    
+    .profile-modal__description__input{
+        width: 22rem;
+    }
+
+    .profile-modal__history__title{
+        border-bottom: 1px solid black;
+        width: 22rem;
+    }
+}

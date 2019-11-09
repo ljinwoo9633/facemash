@@ -1,0 +1,60 @@
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h2 class="masthead-brand text-center">Company's Name</h2>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/home/man">Man</a>
+            <a class="nav-link" href="/home/woman">Woman</a>
+            <a class="nav-link" href="/home/profile">Profile</a>
+            <a class="nav-link" href="/home/search">Search</a>
+            <a class="nav-link" href="/logout">Logout</a>
+        </nav>
+    </div>
+</header>
+<section>
+    <% if(alerting) { %>
+        <div class="home-model mt-3">
+            <div>
+                <div>
+                    <form action="/home/woman/first" method="POST">
+                        <button class="home-model__button" type="submit"><img class="home-model__image rounded shadow-sm" src="<%= protocol %>://<%= url_part %>/home/image/<%= first_main_image_name %>" alt=""></button>
+                        <input type="hidden" name="checking" value="<%= first_main_image_name %>">
+                    </form>
+                </div>
+                <div>
+                    <form action="/home/detail/<%= first_user %>">
+                        <button type="submit" class="btn btn-danger home-modal__button mt-2">
+                            <span class="spinner-grow spinner-grow-sm"></span>
+                            More Info...
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <h3 class="mr-3 ml-3">OR</h3>
+
+            <div>
+                <div>
+                    <form action="/home/woman/second" method="POST">
+                        <button class="home-model__button" type="submit"><img class="home-model__image rounded shadow-sm" src="<%= protocol %>://<%= url_part %>/home/image/<%= second_main_image_name %>" alt=""></button>
+                        <input type="hidden" name="checking" value="<%= second_main_image_name %>">
+                    </form>
+                </div>
+                <div>
+                    <form action="/home/detail/<%= second_user %>">
+                        <button type="submit" class="btn btn-danger home-modal__button mt-2">
+                            <span class="spinner-grow spinner-grow-sm"></span>
+                            More Info...
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% } else { %>
+        <div>
+            I'm sorry There is noting in the users info...
+        </div>
+    <% } %>
+</section>
+<footer>
+
+</footer>

@@ -1,0 +1,27 @@
+.detail-modal__image{
+    height: 25rem;
+    width: 18rem;
+}
+
+.detail-modal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.detail__btn__size{
+    width: 25rem;
+}
+
+@media(max-width: 600px){
+    .detail-modal__image{
+        height: 16rem;
+        width: 10rem;
+    }
+
+    .detail__btn__size{
+        width: 25rem;
+    }
+}

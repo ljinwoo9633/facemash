@@ -1,0 +1,85 @@
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h2 class="masthead-brand text-center">Company's Name</h2>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/home/man">Man</a>
+            <a class="nav-link" href="/home/woman">Woman</a>
+            <a class="nav-link" href="/home/profile">Profile</a>
+            <a class="nav-link" href="/home/search">Search</a>
+            <a class="nav-link" href="/logout">Logout</a>
+        </nav>
+    </div>
+</header>
+<section>
+    <div class="detail-modal">
+        <div class="mt-2 mb-2">
+            <div>
+                <h1 class="mb-2">#<%= detail_user.ranking %> <%= detail_user.name %></h1>
+            </div>
+            <div style="display: flex;">
+                <div>
+                    <img class="detail-modal__image rounded shadow-sm mr-3" src="<%= protocol %>://<%= url_part %>/home/image/<%= detail_user.main_image_filename %>" alt="<%= detail_user.name %>">
+                </div>
+                <div>
+                    <div>
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME NET LIKE</h5>
+                        </div>
+                        <div>
+                            <%= detail_user.like %>
+                        </div>
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME FOLLOWER NUMBER</h5>
+                        </div>
+                        <div>
+                            <%= detail_user.follower_number %>
+                        </div>
+
+                        <div class="mb-2">
+                            <% if(!is_it_me) { %>
+                                <div>
+                                    <% if(!checked_follow) { %>
+                                        <div>
+                                            <form action="/home/detail/follow/<%= detail_user._id %>" method="POST">
+                                                <button type="submit" style="all: unset; cursor: pointer;"><i class="fas fa-heart" style="color: palevioletred; font-size: 2rem;"></i></button>
+                                            </form>
+                                        </div>
+                                    <% } else { %>
+                                        <div>
+                                            <form action="/home/detail/unfollow/<%= detail_user._id %>" method="POST">
+                                                <button type="submit" style="all: unset; cursor: pointer;"><i class="fas fa-heart-broken" style="color: blue; font-size: 2rem;"></i></button>
+                                            </form>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            <% } %>
+                        </div>
+
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME FOLLOW NUMBER</h5>
+                        </div>
+                        <div>
+                            <%= detail_user.follow_number %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <% if(detail_user.description_exists) { %>
+                <ul>
+                    <% detail_user.description.map((description_part) => { %>
+                        <li style="font-size: 18px;"><%= description_part %></li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+
+            <% } %>
+        </div>
+
+    </div>
+</section>
+<footer>
+
+</footer>

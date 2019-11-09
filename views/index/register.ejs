@@ -1,0 +1,60 @@
+<header>
+
+</header>
+<section>
+    <div class="text-center">
+        <div class="mb-3 mt-3">
+            <img class="d-block mx-auto mb-4" src="/image/main.jpg" alt="" width="72" height="72">
+            <h2>Register</h2>
+            <p>Register Page</p>
+        </div>
+        <div>
+            <form class="form-register" action="/register" method="POST">
+                <div>
+                    <div>
+                        <input class="form-control mb-2" type="email" name="email" placeholder="Enter Your Email" required autofocus/>
+                    </div>
+                    <div>
+                        <input class="form-control mb-2" type="text" name="name" placeholder="Enter Your Name" required />
+                    </div>
+                    <div>
+                        <input class="form-control mb-2" type="password" name="password" placeholder="Enter Your Password" required />
+                    </div>
+                    <div>
+                        <input class="form-control mb-2" type="password" name="password2" placeholder="Enter Your Confirm Password" required />
+                    </div>
+                    <div class="mb-3">
+                        <div>
+                            <h3 class="mb-3">Gender</h3>
+                        </div>
+                        <div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" id="customRadio1" type="radio" name="gender" value="man">
+                                <label class="custom-control-label" for="customRadio1">Man</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" id="customRadio2" type="radio" name="gender" value="woman">
+                                <label class="custom-control-label" for="customRadio2">Woman</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <button type="submit" class="btn btn-primary register__btn">Reigster</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="register__footer mb-3">
+    <div>
+        <div>
+            <a href="/login">I Have An Account.</a>
+        </div>
+        <div>
+            <a href="/">Index Page</a>
+        </div>
+    </div>
+</footer>

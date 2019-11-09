@@ -1,0 +1,142 @@
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h2 class="masthead-brand text-center">Company's Name</h2>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/home/man">Man</a>
+            <a class="nav-link" href="/home/woman">Woman</a>
+            <a class="nav-link" href="/home/profile">Profile</a>
+            <a class="nav-link" href="/home/search">Search</a>
+            <a class="nav-link" href="/logout">Logout</a>
+        </nav>
+    </div>
+</header>
+<section>
+    <div class="profile-modal">
+        <div class="mt-2 mb-3">
+            <div>
+                <div>
+                    <h1 class="mb-2">#<%= user_info.ranking %> <%= user_info.name %></h1>
+                </div>
+            </div>
+
+            <div style="display: flex;">
+                <div>
+                    <% if(user_info.main_image_filename_exists) { %>
+                        <img class="profile-modal__image rounded shadow-sm mr-3" src="<%= protocol %>://<%= url_part %>/home/image/<%= user_info.main_image_filename %>" alt="<%= user_info.name %>">
+                    <% } else { %>
+                        <img class="profile-modal__image rounded shadow-sm mr-3" src="/image/unknown.jpg" alt="<%= user_info.name %>">
+                    <% } %>
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME NET LIKE</h5>
+                        </div>
+                        <div>
+                            <%= user_info.like %>
+                        </div>
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME FOLLOWER NUMBER</h5>
+                        </div>
+                        <div>
+                            <%= user_info.follower_number %>
+                        </div>
+                        <div>
+                            <h5 style="border-bottom: 1px solid black;">REAL TIME FOLLOW NUMBER</h5>
+                        </div>
+                        <div>
+                            <%= user_info.follow_number %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div>
+                <h5 style="border-bottom: 1px solid black;">IMAGE</h5>
+            </div>
+            <div>
+                <form action="/home/profile/upload-image" method="POST" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                        <div>
+                            <span class="input-group-text" id="inputGroupFileAddon01">UPLOAD</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="file" accept="image/*" required />
+                            <label class="custom-file-label" for="inputGroupFile01"></label>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-info mb-3 profile-modal__btn__size" type="submit">CHANGE YOUR IMAGE</button>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+                <form action="/home/profile/clear-image" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <button class="btn btn-danger mb-3 profile-modal__btn__size" type="submit">CLEAR YOUR IMAGE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <h5 style="border-bottom: 1px solid black;">NAME</h5>
+            </div>
+            <div>
+                <form action="/home/profile/upload-name" method="POST">
+                    <div class="mb-3">
+                        <div>
+                            <input class="form-control mb-3" style="text-align: center;" type="text" name="name" required />
+                            <div>
+                                <button class="btn btn-info profile-modal__btn__size">CHANGE MY NAME</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <h5 class="profile-modal__history__title">HISTORY</h5>
+            </div>
+            <div>
+                <% if(user_info.description_exists) { %>
+                    <ul>
+                        <% user_info.description.map((description_part) => {%>
+                            <div style="display: flex;">
+                                <li class="mr-2" style="font-size: 18px;">
+                                    <%= description_part %>
+                                </li>
+                                <form action="/home/profile/delete-description" method="POST">
+                                    <button class="profile-modal__delete__btn" type="submit">
+                                        <i class="fas fa-trash-alt" style="color: red; font-size: 18px;"></i>
+                                    </button>
+                                    <input type="hidden" name="description" value="<%= description_part %>">
+                                </form>
+                            </div>
+                        <% }) %>
+                    </ul>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <form action="/home/profile/upload-description" method="POST">
+                <input class="form-control mb-3 profile-modal__description__input" type="text" name="description" />
+                <button class="btn btn-info profile-modal__btn__size" type="submit">ADD MY HISTORY</button>
+            </form>
+        </div>
+    </div>
+
+</section>
+<footer>
+
+</footer>

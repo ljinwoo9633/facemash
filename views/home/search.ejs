@@ -1,0 +1,62 @@
+<header class="masthead mb-auto">
+    <div class="inner">
+        <h2 class="masthead-brand text-center">Company's Name</h2>
+        <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link active" href="/home/man">Man</a>
+            <a class="nav-link" href="/home/woman">Woman</a>
+            <a class="nav-link" href="/home/profile">Profile</a>
+            <a class="nav-link" href="/home/search">Search</a>
+            <a class="nav-link" href="/logout">Logout</a>
+        </nav>
+    </div>
+</header>
+<section>
+    <div>
+        <form class="search-modal__form" action="/home/search" method="GET">
+            <input class="search-modal__input w-50" autofocus type="text" name="search" placeholder="Search" value="<%= searchOptions.search %>"/>
+        </form>
+    </div>
+    <div>
+        <div class="jumbotron text-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">THE MOST ATTRACTIVE PEOPLE IN THE WORLD</h1>
+            </div>
+        </div>
+        <div>
+            <div class="album bg-light" style="display: flex;">
+                <div class="container">
+                    <div class="row">
+                        <% if(searched_users !== []) { %>
+                            <% searched_users.forEach((searched_user) => { %>
+                                <% if(searched_user.main_image_filename_exists) { %>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="shadow-sm">
+                                            <a href="/home/detail/<%= searched_user._id %>">
+                                                <img 
+                                                    src="<%= protocol %>://<%= url_part %>/home/image/<%= searched_user.main_image_filename %>" 
+                                                    alt="<%= searched_user.name %>" 
+                                                    class="image-fluid rounded bd-placeholder-img img-thumbnail" 
+                                                    width="100%" 
+                                                    height="100%"
+                                                    
+                                                />
+                                                <div>
+                                                    <h4 class="p-3 text-center">#<%= searched_user.ranking %> <%= searched_user.name %></h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% }) %>
+                        <% } else { %>
+
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+
+</footer>
