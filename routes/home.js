@@ -384,7 +384,7 @@ router.get('/detail/:id', ensureAuthenticated, async(req, res) => {
     let index_update = 0;
     let ranking = 1;
     while(index_update < images_users.length){
-        images_users[index].ranking = ranking;
+        images_users[index_update].ranking = ranking;
         ranking = ranking + 1;
         index_update = index_update + 1;
     }
