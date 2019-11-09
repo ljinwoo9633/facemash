@@ -377,7 +377,6 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
             url_part: req.headers.host
         })
     }catch{
-        console.log(err);
         res.redirect('/home/search');
     }
 
