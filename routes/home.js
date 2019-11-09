@@ -363,7 +363,6 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
     
     let searched_users = await face_query.sort({like: 'desc'}).exec();
         
-
     searched_users = searched_users.filter((searched_user) => {
         return searched_user.main_image_filename_exists === true;
     })
@@ -377,8 +376,6 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
         url_part: req.headers.host
     })
     
-    res.redirect('/home/search');
-
 })
 
 router.get('/detail/:id', ensureAuthenticated, async(req, res) => {
