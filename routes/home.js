@@ -367,8 +367,6 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
         return searched_user.main_image_filename_exists === true;
     })
 
-    console.log(searched_user);
-
     res.render('home/search', {
         searched_users: searched_users,
         searchOptions: req.query,
