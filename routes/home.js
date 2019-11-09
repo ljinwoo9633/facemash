@@ -368,6 +368,8 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
             return searched_user.main_image_filename_exists === true;
         })
 
+        console.log(searched_user);
+
         res.render('home/search', {
             searched_users: searched_users,
             searchOptions: req.query,
@@ -383,22 +385,26 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
 
 router.get('/detail/:id', ensureAuthenticated, async(req, res) => {
     //Update Ranking
-    const images_users = await User.find({main_image_filename_exists: true}).sort({like: 'desc'}).exec();
+    try{
+        const images_users = await User.find({main_image_filename_exists: true}).sort({like: 'desc'}).exec();
 
-    let index_update = 0;
-    let ranking = 1;
-    while(index < images_users.length){
-        images_users[index].ranking = ranking;
-        ranking = ranking + 1;
-        index_update = index_update + 1;
-    }
-    
-    images_users.map((images_user) => {
-        User.findOne({_id: images_user._id}).then((user) => {
-            user.ranking = images_user.ranking;
-            user.save();
+        let index_update = 0;
+        let ranking = 1;
+        while(index < images_users.length){
+            images_users[index].ranking = ranking;
+            ranking = ranking + 1;
+            index_update = index_update + 1;
+        }
+        
+        images_users.map((images_user) => {
+            User.findOne({_id: images_user._id}).then((user) => {
+                user.ranking = images_user.ranking;
+                user.save();
+            })
         })
-    })
+    }catch{
+        console.error(err);
+    }
     
 
     const detail_user = await User.findOne({_id: req.params.id}).exec();
