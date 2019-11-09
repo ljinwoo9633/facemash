@@ -8,7 +8,7 @@ const passport = require('passport');
 const {forwardAuthenticated} = require('../config/auth');
 
 router.get('/',forwardAuthenticated ,async (req, res) => {
-    const top_user = await User.find().sort({ranking: 1}).exec();
+    const top_user = await User.find().sort({like: 'desc'}).exec();
 
     const first_user = top_user[0];
     const second_user = top_user[1];
