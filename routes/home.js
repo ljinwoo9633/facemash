@@ -385,45 +385,45 @@ router.get('/search',ensureAuthenticated , async (req, res) => {
 
 router.get('/detail/:id', ensureAuthenticated, async(req, res) => {
     //Update Ranking
-    try{
-        const images_users = await User.find({main_image_filename_exists: true}).sort({like: 'desc'}).exec();
-
-        let index_update = 0;
-        let ranking = 1;
-        while(index < images_users.length){
-            images_users[index].ranking = ranking;
-            ranking = ranking + 1;
-            index_update = index_update + 1;
-        }
-        
-        images_users.map((images_user) => {
-            User.findOne({_id: images_user._id}).then((user) => {
-                user.ranking = images_user.ranking;
-                user.save();
-            })
-        })
-    }catch{
-        console.error(err);
-    }
     
+    const images_users = await User.find({main_image_filename_exists: true}).sort({like: 'desc'}).exec();
 
-    const detail_user = await User.findOne({_id: req.params.id}).exec();
-    let index = 0;
-    //Follow가 되었는지 확인
-    let checked_follow = false;
-    let is_it_me = false;
-    //mongodb안에서 follower 로 있는지 확인
-    while(index < detail_user.follower.length){
-        if(String(detail_user.follower[index]) === String(req.user._id)){
-            checked_follow = true;
-            break;
-        }
-        index = index + 1;
+    let index_update = 0;
+    let ranking = 1;
+    while(index < images_users.length){
+        images_users[index].ranking = ranking;
+        ranking = ranking + 1;
+        index_update = index_update + 1;
     }
+        
+    images_users.map((images_user) => {
+        User.findOne({_id: images_user._id}).then((user) => {
+            user.ranking = images_user.ranking;
+            user.save();
+        })
+    })
+
     if(String(req.params.id) === String(req.user._id)){
-        is_it_me = true;
+        res.redirect('/home/profile')
+    }else{
+        const detail_user = await User.findOne({_id: req.params.id}).exec();
+        let index = 0;
+        //Follow가 되었는지 확인
+        let checked_follow = false;
+        let is_it_me = false;
+        //mongodb안에서 follower 로 있는지 확인
+        while(index < detail_user.follower.length){
+            if(String(detail_user.follower[index]) === String(req.user._id)){
+                checked_follow = true;
+                break;
+            }
+            index = index + 1;
+        }
+        if(String(req.params.id) === String(req.user._id)){
+            is_it_me = true;
+        }
+        res.render('home/detail', {detail_user: detail_user, checked_follow: checked_follow, is_it_me: is_it_me, protocol: req.protocol, url_part: req.headers.host})
     }
-    res.render('home/detail', {detail_user: detail_user, checked_follow: checked_follow, is_it_me: is_it_me, protocol: req.protocol, url_part: req.headers.host})
 })
 
 //Follow User
